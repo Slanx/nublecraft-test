@@ -22,7 +22,7 @@ export class User {
   @Column({ default: null })
   image: string;
 
-  @Column({ type: 'binary', default: null })
+  @Column({ type: 'bytea', default: null })
   pdf: Uint8Array;
 
   constructor(partial: Partial<User>) {

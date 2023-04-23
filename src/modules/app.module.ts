@@ -8,7 +8,7 @@ import { UserModule } from './user/user.module';
 @Module({
   imports: [
     UserModule,
-    TypeOrmModule.forRootAsync(typeOrmModuleOptions),
+    TypeOrmModule.forRoot(typeOrmModuleOptions),
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',

@@ -2,7 +2,8 @@ version: '3'
 services:
   node:
     container_name: app
-    build: .
+    build:
+      target: ${NODE_ENV}
     ports:
       - ${PORT}:${PORT}
     networks:
@@ -12,12 +13,11 @@ services:
     env_file:
       - .env
     volumes:
-      - ./src:/usr/src/app/src
+      - ./src:/usr/app/server/src
     restart: always
   db:
     image: postgres
     container_name: db
-    build: ./database/
     networks:
       - back
     ports:

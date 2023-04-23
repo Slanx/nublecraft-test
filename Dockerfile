@@ -8,7 +8,7 @@ RUN npm ci
 
 COPY . .
 
-CMD [ "npm", "run", "start:dev" ]
+CMD [ "./docker/docker-migrations-entrypoint.sh"]
 
 FROM node:18-alpine As build
 
@@ -22,12 +22,9 @@ COPY . .
 
 RUN npm run build
 
-ENV NODE_ENV production
-
 RUN npm ci --only=production && npm cache clean --force
 
 FROM node:18-alpine As production
-
 
 WORKDIR /usr/app/server
 

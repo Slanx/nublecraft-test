@@ -12,14 +12,13 @@ export const typeOrmModuleOptions: DataSourceOptions = {
   database: process.env.POSTGRES_DB,
   synchronize: false,
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  migrations: [__dirname + '/migrations/*{.ts,.js}'],
+  migrations: [__dirname + '/../migrations/*{.ts,.js}'],
+  migrationsRun: true,
+  migrationsTableName: 'migrations',
 };
 
 const TypeOrmConfig = new DataSource({
   ...typeOrmModuleOptions,
-  migrations: ['src/migrations/*{.ts,.js}'],
-  // migrationsRun: true,
-  migrationsTableName: 'migrations',
 });
 
 export default TypeOrmConfig;
