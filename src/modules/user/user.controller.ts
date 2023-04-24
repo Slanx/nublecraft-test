@@ -86,11 +86,11 @@ export class UserController {
   @Public()
   @Post('profile')
   async createProfile(@Body() createUserProfileDto: CreateUserProfileDto) {
-    const user = await this.userService.createUserProfile(
+    const result = await this.userService.createUserProfile(
       createUserProfileDto.email,
     );
 
-    return user;
+    return result;
   }
 
   @Public()
