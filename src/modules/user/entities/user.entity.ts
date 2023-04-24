@@ -19,11 +19,12 @@ export class User {
   @Column()
   lastName: string;
 
-  @Column({ default: null })
+  @Column({ nullable: true })
   image: string;
 
+  @Exclude()
   @Column({ type: 'bytea', default: null })
-  pdf: Uint8Array;
+  pdf: Buffer;
 
   constructor(partial: Partial<User>) {
     Object.assign(this, partial);
