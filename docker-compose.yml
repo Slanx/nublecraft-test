@@ -1,0 +1,37 @@
+version: '3'
+services:
+  node:
+    container_name: app
+    build:
+      target: ${NODE_ENV}
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      - back
+    depends_on:
+      - db
+    env_file:
+      - .env
+    volumes:
+      - ./src:/usr/app/server/src
+    restart: always
+  db:
+    image: postgres
+    container_name: db
+    networks:
+      - back
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    command:
+      ['postgres', '-c', 'logging_collector=true', '-c', 'log_statement=all']
+
+networks:
+  back:
+    driver: bridge
+volumes:
+  pgdata:
